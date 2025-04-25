@@ -16,7 +16,7 @@ public class MoveLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerControllerScript.gameOver == false) // If the player controller script's variable (gamneOver) is false, then we keep the background moving. Otherwise we stop moving the background.
+        if (playerControllerScript.gameOver == false) // If the player controller script's variable (gamneOver) is false, then we keep the background and obstacle's moving. Otherwise we stop moving the background.
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }

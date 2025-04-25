@@ -48,13 +48,18 @@ public class PlayerController : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Obstacle")) // If the player collides with an obstacle then the game is over
         {
-            Debug.Log("Game Over");
-            playerAnim.SetBool("Death_b", true); // We are setting the players death animation to true so it can reach the death state in the animator controller
-            playerAnim.SetInteger("DeathType_int", 1); // We are choosing a specific death animation to play which has an ID of 1
-            gameOver = true;
-            explosionParticle.Play(); // The explosion sound effect player when the player crashes into an obstacle
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSound, 0.5f); // We play the crash sound effect when the player crashes into an obstacle
+            Obstacle obstacle = collision.gameObject.GetComponent<Obstacle>();
+
+            if (obstacle != null) 
+            {
+                Debug.Log("Game Over");
+                playerAnim.SetBool("Death_b", true); // We are setting the players death animation to true so it can reach the death state in the animator controller
+                playerAnim.SetInteger("DeathType_int", 1); // We are choosing a specific death animation to play which has an ID of 1
+                gameOver = true;
+                explosionParticle.Play(); // The explosion sound effect player when the player crashes into an obstacle
+                dirtParticle.Stop();
+                playerAudio.PlayOneShot(obstacle.pObstacleClip, 0.5f); // We play the crash sound effect specific to the obstacle when the player crashes into it
+            }
         }
     }
 }

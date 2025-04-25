@@ -4,7 +4,7 @@ public abstract class Obstacle : MonoBehaviour
 {
     [SerializeField] private GameObject obstacle;
     [SerializeField] private float obstacleSpeed;
-    [SerializeField] private AudioClip obstacleClip;
+    [SerializeField] private AudioClip obstacleClip;                   
 
     public virtual GameObject pObstacle { get => obstacle; protected set => obstacle = value; }
     public virtual float pObstacleSpeed { get => obstacleSpeed; protected set => obstacleSpeed = value; }
