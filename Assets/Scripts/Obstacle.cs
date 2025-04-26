@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class Obstacle : MonoBehaviour
 {
+    // Encapsulation of the base class memeber fields so that only the children of this class can access it through their public properties
     [SerializeField] private GameObject obstacle;
     [SerializeField] private float obstacleSpeed;
     [SerializeField] private AudioClip obstacleClip;                   

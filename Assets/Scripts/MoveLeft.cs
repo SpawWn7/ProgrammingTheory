@@ -10,18 +10,33 @@ public class MoveLeft : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>(); 
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Movement();
+    }
+
+    // Abstracting the movement logic so that it may be used again and again by others if needed. One simply just needs to call the function and not necessaily understand how it works.
+    private void Movement() 
+    {
         if (playerControllerScript.gameOver == false) // If the player controller script's variable (gamneOver) is false, then we keep the background and obstacle's moving. Otherwise we stop moving the background.
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            Obstacle obstacleScript = GetComponent<Obstacle>();
+
+            if (obstacleScript != null)
+            {
+                transform.Translate(Vector3.left * (speed + obstacleScript.pObstacleSpeed) * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
+            }
         }
-        
-        if(transform.position.x < leftBound && gameObject.CompareTag("Obstacle")) // Here we are destroying all obstacle objects that move past -15 along the x-axis
+
+        if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle")) // Here we are destroying all obstacle objects that move past -15 along the x-axis
         {
             Destroy(gameObject);
         }
